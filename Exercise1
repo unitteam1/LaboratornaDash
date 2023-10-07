@@ -1,0 +1,15 @@
+if [ $# -ne 3 ]; then
+    echo "Використання: $0 <каталог> <оригінальне розширення> <нове розширення>"
+    exit 1
+fi
+directory="$1"
+original_extension="$2"
+new_extension="$3"
+cd "$directory" || exit 1
+files_to_rename=(*."$original_extension")
+for file in "${files_to_rename[@]}"; do
+    new_name="${file%.$original_extension}.$new_extension"
+    echo "Переіменовую $file на $new_name"
+    mv "$file" "$new_name"
+done
+cd - || exit 1
