@@ -1,0 +1,12 @@
+yourName="file"
+last_file=$(ls -1 | grep "^$yourName" | sort -n | tail -n 1 | sed 's/'$yourName'//' | sed 's/^0*//')
+if [ -z "$last_file" ]; then
+    last_file=0
+fi
+num_files_to_create=25
+for ((i = 1; i <= num_files_to_create; i++)); do
+    last_file=$((last_file + 1))
+    new_filename="$yourName$last_file"
+    touch "$new_filename"
+    echo "Створено файл $new_filename"
+done
