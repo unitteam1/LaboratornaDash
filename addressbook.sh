@@ -9,14 +9,14 @@ case "$1" in
         name="$2"
         email="$3"
         echo "$name $email" >> "$address_file"
-        echo "Додано запис: $name $email"
+        echo "Note add: $name $email"
         ;;
 
     list)
         if [ -s "$address_file" ]; then
             cat "$address_file"
         else
-            echo "адресна книга порожня"
+            echo "address book is empty"
         fi
         ;;
 
@@ -35,7 +35,7 @@ case "$1" in
         grep "^$name " "$address_file" | cut -d' ' -f2
         ;;
     *)
-        echo "Використання: ./addressbook [new|list|remove|clear|lookup] [параметри...]"
+        echo "Used: ./addressbook [new|list|remove|clear|lookup] [parametrs...]"
         exit 1
         ;;
 esac
